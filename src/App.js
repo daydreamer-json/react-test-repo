@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { createTheme, ThemeProvider, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import '@fontsource/roboto/100.css';
@@ -20,40 +21,58 @@ import '@fontsource/noto-sans-jp/900.css';
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
-import FetchAPI from './components/FetchAPI';
-const uiTheme = createTheme({});
+import Content from './components/Content';
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Roboto',
+      'Noto Sans JP',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      'Segoe UI',
+      'Oxygen',
+      'Ubuntu',
+      'Cantarell',
+      'Fira Sans',
+      'Droid Sans',
+      'Helvetica Neue',
+      'sans-serif'
+    ].join(','),
+  }
+});
 
 function App () {
-  console.log(FetchAPI());
+  const [db, setDb] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios (
+        'https://raw.githubusercontent.com/daydreamer-json/jukebox/main/db/master.json'
+      );
+      setDb(result.data);
+    };
+    fetchData();
+  }, []);
+  if (!db) {
+    return <div>Loading Database ...</div>;
+  }
   return (
     <div className="App">
-      {/* <Button>text - これはテキストボタンです。</Button>
-      <Button variant="contained">contained - これは塗りつぶされたボタンです。</Button>
-      <Button variant="outlined">outlined - これは枠線のみのボタンです。</Button> */}
-      <Grid container direction="column">
-        <Grid item>
-          <Header />
+      <ThemeProvider theme={theme}>
+        <Grid container direction="column">
+          <Grid item>
+            <Header />
+          </Grid>
+          <Grid item container sx={{
+            padding: theme.spacing(3),
+          }}>
+            <Grid item sm={1} />
+              <Grid item xs={12} sm={10}>
+                <Content db={db} />
+              </Grid>
+            <Grid item sm={1} />
+          </Grid>
         </Grid>
-        <Grid item container sx={{
-          padding: uiTheme.spacing(3),
-        }}>
-          <Grid item sm={2} />
-            <Grid item xs={12} sm={8}>
-              <Paper elevation={8}>
-                <Typography variant="body1" component="p" sx={{
-                  textAlign: 'center',
-                  padding: uiTheme.spacing(4)
-                }}>
-                  ここにコンテンツが入ります。Gridで記述。
-                </Typography>
-                <Button sx={{width: '100%'}}>text - これはテキストボタンです。</Button>
-                <Button sx={{width: '100%'}} variant="contained">contained - これは塗りつぶされたボタンです。</Button>
-                <Button sx={{width: '100%'}} variant="outlined">outlined - これは枠線のみのボタンです。</Button>
-              </Paper>
-            </Grid>
-          <Grid item sm={2} />
-        </Grid>
-      </Grid>
+      </ThemeProvider>
     </div>
   );
 };
