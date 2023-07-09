@@ -25,6 +25,12 @@ import '@fontsource/noto-sans-jp/600.css';
 import '@fontsource/noto-sans-jp/700.css';
 import '@fontsource/noto-sans-jp/800.css';
 import '@fontsource/noto-sans-jp/900.css';
+import '@fontsource/noto-sans-sc/100.css';
+import '@fontsource/noto-sans-sc/300.css';
+import '@fontsource/noto-sans-sc/400.css';
+import '@fontsource/noto-sans-sc/500.css';
+import '@fontsource/noto-sans-sc/700.css';
+import '@fontsource/noto-sans-sc/900.css';
 
 import logo from './logo.svg';
 import './App.css';
@@ -59,9 +65,11 @@ function App () {
         'https://raw.githubusercontent.com/daydreamer-json/jukebox/main/db/master.json'
       );
       setDb(result.data);
+      window.db = db;
     };
     fetchData();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [null]);
   if (!db) {
     return (
       <div className="App">
