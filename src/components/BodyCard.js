@@ -10,6 +10,11 @@ function BodyCard (props) {
         <CardMedia
           component="img"
           image={albumObject.coverExtLink}
+          sx={{
+            'user-drag': 'none',
+            '-webkit-user-drag': 'none',
+            '-moz-user-select': 'none',
+          }}
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">

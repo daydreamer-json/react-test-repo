@@ -71,17 +71,6 @@ function App () {
       </div>
     );
   }
-  /* const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Content db={db} />,
-      errorElement: <Error />
-    },
-    {
-      path: "/about",
-      element: <AboutPage />
-    }
-  ]) */
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
