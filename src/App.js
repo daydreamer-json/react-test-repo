@@ -6,7 +6,7 @@
 **/
 
 import React, { useState, useEffect } from "react";
-// import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import { createTheme, ThemeProvider, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import styled from "@emotion/styled";
@@ -41,8 +41,9 @@ import AboutPage from './components/AboutPage';
 const theme = createTheme({
   typography: {
     fontFamily: [
-      'Roboto',
+      'DIN Pro',
       'Noto Sans JP',
+      'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
       'Segoe UI',
@@ -91,7 +92,11 @@ function App () {
           }}>
             <Grid item sm={1} />
               <Grid item xs={12} sm={10}>
-                <Content db={db} />
+                <Routes>
+                  <Route index element={<Content db={db} />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="*" element={<Error />} />
+                </Routes>
               </Grid>
             <Grid item sm={1} />
           </Grid>

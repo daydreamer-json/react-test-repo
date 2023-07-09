@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
-import { Link as RouterLink, MemoryRouter } from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+import { Link as RouterLink, Routes, Route } from 'react-router-dom';
 import { useTheme, Typography, IconButton, Menu, MenuItem, Link} from "@mui/material";
 import styled from "@emotion/styled";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -15,6 +13,7 @@ function MainMenu () {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const theme = useTheme();
   return (
     <div className="MainMenuButton">
       <IconButton
@@ -36,11 +35,14 @@ function MainMenu () {
           'aria-labelledby': 'main-menu-button'
         }}
       >
-        {/* <Router> */}
+        <RouterLink to="/about" style={{
+          color: theme.palette.text.primary,
+          textDecoration: 'none',
+        }}>
           <MenuItem onClick={handleClose}>
             About
           </MenuItem>
-        {/* </Router> */}
+        </RouterLink>
       </Menu>
     </div>
   )
