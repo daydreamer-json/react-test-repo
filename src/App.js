@@ -1,4 +1,12 @@
+/**
+ *! HoYoverse Jukebox
+ *! Using: React, Material UI
+ *! by daydreamer-json
+ *! Copyright (C) 2023 daydreamer-json. All Rights Reserved.
+**/
+
 import React, { useState, useEffect } from "react";
+// import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import axios from "axios";
 import { createTheme, ThemeProvider, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import styled from "@emotion/styled";
@@ -22,6 +30,8 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import Content from './components/Content';
+import Error from "./components/ErrorPage/Error";
+import AboutPage from './components/AboutPage';
 const theme = createTheme({
   typography: {
     fontFamily: [
@@ -53,8 +63,25 @@ function App () {
     fetchData();
   }, []);
   if (!db) {
-    return <div>Loading Database ...</div>;
+    return (
+      <div className="App">
+        <h3>Connecting to Database API ...</h3>
+        <p>This process may take some time.</p>
+        <p>If the page does not load, please contact the administrator.</p>
+      </div>
+    );
   }
+  /* const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Content db={db} />,
+      errorElement: <Error />
+    },
+    {
+      path: "/about",
+      element: <AboutPage />
+    }
+  ]) */
   return (
     <div className="App">
       <ThemeProvider theme={theme}>

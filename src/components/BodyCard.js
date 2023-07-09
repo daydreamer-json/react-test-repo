@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Button, Typography, Card, CardActions, CardActionArea, CardContent, CardMedia } from "@mui/material";
+import * as React from "react";
+import { Typography, Card, CardActions, CardActionArea, CardContent, CardMedia } from "@mui/material";
 import styled from "@emotion/styled";
 
 function BodyCard (props) {
