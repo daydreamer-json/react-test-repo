@@ -8,7 +8,7 @@ function AboutPage () {
     <div className="AboutPage">
       <Fade in timeout={1000}>
         <div className="AboutPageMainTitle" style={{textAlign: 'center'}}>
-          <img style={{width: '10em'}} alt="HoYoverse Mark" src="img/hoyoverse_logomark.png" />
+          <img style={{width: '10em', height: '10em'}} alt="HoYoverse Mark" src="img/hoyoverse_logomark.png" />
           <Typography variant="h4" component="h1">
             HoYoverse Jukebox
           </Typography>
