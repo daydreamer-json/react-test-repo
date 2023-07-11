@@ -6,7 +6,7 @@ function AboutPage () {
   const theme = useTheme();
   return (
     <div className="AboutPage">
-      <Fade in timeout={1000}>
+      <Fade in timeout={2000}>
         <div className="AboutPageMainTitle" style={{textAlign: 'center'}}>
           <img style={{width: '10em', height: '10em'}} alt="HoYoverse Mark" src="img/hoyoverse_logomark.png" />
           <Typography variant="h4" component="h1">
@@ -22,9 +22,6 @@ function AboutPage () {
         marginBottom: theme.spacing(4)
       }} />
       <div className="AboutPageDetailedContext">
-        {/* <Typography variant="h5" component="p">
-          This site is work in progress.
-        </Typography> */}
         <Alert variant="filled" severity="warning">
           <AlertTitle>
             Warning

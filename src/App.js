@@ -38,6 +38,7 @@ import Header from './components/Header';
 import Content from './components/Content';
 import Error from "./components/ErrorPage/Error";
 import AboutPage from './components/AboutPage';
+import AlbumPage from "./components/AlbumPage";
 const theme = createTheme({
   typography: {
     fontFamily: [
@@ -95,6 +96,7 @@ function App () {
                 <Routes>
                   <Route index element={<Content db={db} />} />
                   <Route path="/about" element={<AboutPage />} />
+                  <Route path="/album/:albumUniqueId" element={<AlbumPage db={db} />} />
                   <Route path="*" element={<Error />} />
                 </Routes>
               </Grid>

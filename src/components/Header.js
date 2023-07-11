@@ -12,7 +12,7 @@ function Header () {
     <div>
       <AppBar position="fixed">
         <Toolbar>
-          <img style={{width: '2em'}} alt="HoYoverse Mark" src="img/hoyoverse_logomark.png" />
+          <img style={{width: '2em'}} alt="HoYoverse Mark" src="/img/hoyoverse_logomark.png" />
           {/* <Link noWrap sx={{
             display: 'flex',
             textDecoration: 'none',

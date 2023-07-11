@@ -8,7 +8,8 @@ import returnPathStringFromUniqueIdObject from "./func/returnPathStringFromUniqu
 
 function BodyCard (props) {
   const { db, albumObject } = props;
-  let coverUrlPath = `${UserConfig.baseUrl}${returnPathStringFromUniqueIdObject(db, returnUniqueIdFromAlbumId(db, albumObject.uniqueId))}/cover_s.webp`
+  let coverUrlPath = `${UserConfig.baseUrl}${returnPathStringFromUniqueIdObject(db, returnUniqueIdFromAlbumId(db, albumObject.uniqueId))}/cover_s.webp`;
+  const [coverImageLoaded, setCoverImageLoaded] = React.useState(false);
   return (
     <Card>
       <CardActionArea>
@@ -17,6 +18,7 @@ function BodyCard (props) {
           image={
             `${coverUrlPath}`
           }
+          alt="Cover Image"
           sx={{
             'UserDrag': 'none',
             'WebkitUserDrag': 'none',
