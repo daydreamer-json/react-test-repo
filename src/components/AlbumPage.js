@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useSearchParams } from "react-router-dom";
 import { useTheme, Typography, Card, CardActions, CardActionArea, CardContent, CardMedia } from "@mui/material";
 import styled from "@emotion/styled";
 
@@ -10,6 +10,11 @@ import returnPathStringFromUniqueIdObject from "./func/returnPathStringFromUniqu
 function AlbumPage (db) {
   const fetchedParams = useParams();
   const fetchedLocation = useLocation();
+  const [rawSearchParams, setSearchParams] = useSearchParams();
+  const fetchedSearchParams = {};
+  rawSearchParams.forEach((value, key) => {
+    fetchedSearchParams[key] = value;
+  });
   return (
     <div className="albumPage">
       <Typography variant="body1" component="p">
@@ -20,6 +25,10 @@ function AlbumPage (db) {
         useLocation:
         <pre>
           {JSON.stringify(fetchedLocation, null, 2)}
+        </pre>
+        useSearchParams:
+        <pre>
+          {JSON.stringify(fetchedSearchParams, null, 2)}
         </pre>
       </Typography>
     </div>
