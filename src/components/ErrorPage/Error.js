@@ -6,11 +6,9 @@ import styled from "@emotion/styled";
 
 function Error () {
   return (
-    <div className="App">
-      <div className="ErrorPage">
-        <Typography variant="h4" component="h1">Unexpected Error</Typography>
-        <h2>404 Not Found</h2>
-      </div>
+    <div className="ErrorPage">
+      <Typography variant="h4" component="h1">Unexpected Error</Typography>
+      <h2>404 Not Found</h2>
     </div>
   )
 }

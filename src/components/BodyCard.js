@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link as RouterLink, Routes, Route } from 'react-router-dom';
 import { Typography, Card, CardActions, CardActionArea, CardContent, CardMedia } from "@mui/material";
 import styled from "@emotion/styled";
 
@@ -12,18 +13,13 @@ function BodyCard (props) {
   const [coverImageLoaded, setCoverImageLoaded] = React.useState(false);
   return (
     <Card>
-      <CardActionArea>
+      <CardActionArea component={RouterLink} to={`/album/${albumObject.uniqueId}`}>
         <CardMedia
           component="img"
           image={
             `${coverUrlPath}`
           }
-          alt="Cover Image"
-          sx={{
-            'UserDrag': 'none',
-            'WebkitUserDrag': 'none',
-            'MozUserSelect': 'none',
-          }}
+          alt="Cover Art"
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
@@ -32,9 +28,7 @@ function BodyCard (props) {
           <Typography gutterBottom variant="body2" component="h4">
             {albumObject["albumTitle_en-us"]}
           </Typography>
-          <Typography sx={{
-            fontFamily: ['Roboto', 'Noto Sans SC']
-          }} gutterBottom variant="body2" component="h4">
+          <Typography className="ChineseFont" gutterBottom variant="body2" component="h4">
             {albumObject["albumTitle_zh-cn"]}
           </Typography>
         </CardContent>

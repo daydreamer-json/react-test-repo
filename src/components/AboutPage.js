@@ -22,9 +22,9 @@ function AboutPage () {
         marginBottom: theme.spacing(4)
       }} />
       <div className="AboutPageDetailedContext">
-        <Alert variant="filled" severity="warning">
+        <Alert variant="filled" severity="info">
           <AlertTitle>
-            Warning
+            Information
           </AlertTitle>
           This site is work in progress. Only the layout is ready.
         </Alert>

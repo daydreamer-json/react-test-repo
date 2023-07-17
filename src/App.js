@@ -40,6 +40,11 @@ import Error from "./components/ErrorPage/Error";
 import AboutPage from './components/AboutPage';
 import AlbumPage from "./components/AlbumPage";
 const theme = createTheme({
+  palette: {
+    background: {
+      default: '#f2f2f2'
+    }
+  },
   typography: {
     fontFamily: [
       'DIN Pro',
@@ -67,7 +72,7 @@ function App () {
         'https://raw.githubusercontent.com/daydreamer-json/jukebox/main/db/master.json'
       );
       setDb(result.data);
-      window.db = db;
+      window.db = result.data;
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,8 +87,10 @@ function App () {
     );
   }
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <div className="App" style={{
+        backgroundColor: theme.palette.background.default
+      }}>
         <Grid container direction="column">
           <Grid item>
             <Header />
@@ -103,8 +110,8 @@ function App () {
             <Grid item sm={1} />
           </Grid>
         </Grid>
-      </ThemeProvider>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 };
 

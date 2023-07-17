@@ -28,7 +28,7 @@ function Header () {
             textDecoration: 'none',
             margin: theme.spacing(1),
             flexGrow: 1,
-            color: theme.palette.background.default,
+            color: theme.palette.background.paper,
           }}>
             <Typography variant="h6" component="span">
               HoYoverse Jukebox
