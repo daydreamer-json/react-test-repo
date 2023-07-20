@@ -35,10 +35,13 @@ import '@fontsource/noto-sans-sc/900.css';
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
+import FooterPlayer from "./components/FooterPlayer";
 import Content from './components/Content';
 import Error from "./components/ErrorPage/Error";
 import AboutPage from './components/AboutPage';
+import SettingsPage from "./components/SettingsPage";
 import AlbumPage from "./components/AlbumPage";
+import { ReportGmailerrorred } from "@mui/icons-material";
 const theme = createTheme({
   palette: {
     background: {
@@ -65,6 +68,7 @@ const theme = createTheme({
 });
 
 function App () {
+  window.unique = {}
   const [db, setDb] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
@@ -103,11 +107,15 @@ function App () {
                 <Routes>
                   <Route index element={<Content db={db} />} />
                   <Route path="/about" element={<AboutPage />} />
+                  <Route path="/settings" element={<SettingsPage />} />
                   <Route path="/album/:albumUniqueId" element={<AlbumPage db={db} />} />
                   <Route path="*" element={<Error />} />
                 </Routes>
               </Grid>
             <Grid item sm={1} />
+          </Grid>
+          <Grid item>
+            <FooterPlayer />
           </Grid>
         </Grid>
       </div>

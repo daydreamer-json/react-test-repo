@@ -13,16 +13,6 @@ function Header () {
       <AppBar position="fixed">
         <Toolbar>
           <img style={{width: '2em'}} alt="HoYoverse Mark" src="/img/hoyoverse_logomark.png" />
-          {/* <Link noWrap sx={{
-            display: 'flex',
-            textDecoration: 'none',
-            margin: theme.spacing(1),
-            flexGrow: 1,
-            color: 'inherit',
-            typography: 'h6'
-          }}>
-            HoYoverse Jukebox
-          </Link> */}
           <RouterLink to="/" style={{
             display: 'flex',
             textDecoration: 'none',

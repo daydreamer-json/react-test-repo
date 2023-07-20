@@ -43,6 +43,14 @@ function MainMenu () {
             About
           </MenuItem>
         </RouterLink>
+        <RouterLink to="/settings" style={{
+          color: theme.palette.text.primary,
+          textDecoration: 'none',
+        }}>
+          <MenuItem onClick={handleClose}>
+            Settings
+          </MenuItem>
+        </RouterLink>
       </Menu>
     </div>
   )

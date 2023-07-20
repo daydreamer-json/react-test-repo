@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useParams, useLocation, useSearchParams } from "react-router-dom";
-import { useTheme, Typography, Accordion, AccordionSummary, AccordionDetails, Divider, List, ListSubheader, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Avatar, IconButton, Paper, ListItemButton } from "@mui/material";
+import { useTheme, Typography, Accordion, AccordionSummary, AccordionDetails, Button, Divider, List, ListSubheader, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Avatar, IconButton, Paper, ListItemButton } from "@mui/material";
 import styled from "@emotion/styled";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -9,6 +9,8 @@ import Error from './ErrorPage/Error';
 import UserConfig from '../UserConfig';
 import returnUniqueIdFromAlbumId from "./func/returnUniqueIdFromAlbumId";
 import returnPathStringFromUniqueIdObject from "./func/returnPathStringFromUniqueIdObject";
+import returnUniqueObjectFromTrackId from "./func/returnUniqueObjectFromTrackId";
+import FooterPlayer from "./FooterPlayer";
 
 function AlbumPage (props) {
   const { db } = props;
@@ -164,19 +166,44 @@ function AlbumPage (props) {
           by {albumObject["albumArtist"]}
         </Typography>
       </div>
+      <div className="albumExtLinksHolder" style={{
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1)
+      }}>
+        <Button variant="outlined" size="small" target="_blank" rel="noopener noreferrer" href={albumObject["extLink_spotify"]} sx={{
+          textTransform: 'none',
+          marginRight: theme.spacing(1),
+        }}>
+          Spotify
+        </Button>
+        <Button variant="outlined" size="small" target="_blank" rel="noopener noreferrer" href={albumObject["extLink_applemusic"]} sx={{
+          textTransform: 'none',
+          marginRight: theme.spacing(1),
+        }}>
+          Apple Music
+        </Button>
+        <Button variant="outlined" size="small" target="_blank" rel="noopener noreferrer" href={albumObject["extLink_vgmdb"]} sx={{
+          textTransform: 'none',
+          marginRight: theme.spacing(1),
+        }}>
+          VGMdb
+        </Button>
+        <Button variant="outlined" size="small" target="_blank" rel="noopener noreferrer" href={albumObject["extLink_musicbrainz"]} sx={{
+          textTransform: 'none',
+          marginRight: theme.spacing(1),
+        }}>
+          MusicBrainz
+        </Button>
+      </div>
       <div className="albumTrackListHolder" style={{
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1)
       }}>
-        {/* <Typography variant="body1" component="p" sx={{
-          color: theme.palette.text.primary
-        }}>
-          ここにトラックリストが表示される予定です。
-        </Typography> */}
         <List
           subheader={<li />}
           sx={{
             width: '100%',
+            padding: 0,
             bgcolor: theme.palette.background.paper
           }}
         >
@@ -218,6 +245,11 @@ function AlbumPage (props) {
     </div>
     {debugAreaComponent}
   </> )
+}
+
+function playAudio (db, uniqueTrackId) {
+  const uniqueObjectSet = returnUniqueObjectFromTrackId(db, uniqueTrackId);
+  
 }
 
 export default AlbumPage;
