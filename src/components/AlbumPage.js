@@ -200,6 +200,7 @@ function AlbumPage (props) {
         marginBottom: theme.spacing(1)
       }}>
         <List
+          dense={true}
           subheader={<li />}
           sx={{
             width: '100%',
