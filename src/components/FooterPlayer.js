@@ -46,7 +46,7 @@ function FooterPlayer () {
   return (
     <div>
       <AppBar position="fixed" color="transparent" elevation={0} sx={{ top: 'auto', bottom: 0 }}>
-        <Toolbar sx={{padding: '0', bottom: 0 }}>
+        <Toolbar sx={{paddingX: theme.spacing(1), bottom: 0 }}>
           <Plyr
             options={plyrOptions}
             ref={window.unique.playerRef}
