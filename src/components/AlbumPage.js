@@ -7,10 +7,12 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 import Error from './ErrorPage/Error';
 import UserConfig from '../UserConfig';
+import InternalSettingsController from "./InternalSettingsController";
 import returnUniqueIdFromAlbumId from "./func/returnUniqueIdFromAlbumId";
 import returnPathStringFromUniqueIdObject from "./func/returnPathStringFromUniqueIdObject";
 import returnUniqueObjectFromTrackId from "./func/returnUniqueObjectFromTrackId";
 import FooterPlayer from "./FooterPlayer";
+import returnUrlFromUniqueObject from "./func/returnUrlFromUniqueObject";
 
 function AlbumPage (props) {
   const { db } = props;
@@ -216,7 +218,7 @@ function AlbumPage (props) {
                 </ListSubheader>
                 {trackObjectList[item.discNum - 1].map((item2) => (
                   <ListItem key={`track-unique-${item2.uniqueId}`} disablePadding>
-                    <ListItemButton>
+                    <ListItemButton onClick={() => playAudio(db, item2.uniqueId)}>
                       <ListItemIcon>
                         <PlayArrowIcon />
                       </ListItemIcon>
@@ -250,7 +252,34 @@ function AlbumPage (props) {
 
 function playAudio (db, uniqueTrackId) {
   const uniqueObjectSet = returnUniqueObjectFromTrackId(db, uniqueTrackId);
-  
+  const completedUrl = returnUrlFromUniqueObject(db, uniqueObjectSet, InternalSettingsController().settings_quality).completedUrl;
+  const qualityObject = returnUrlFromUniqueObject(db, uniqueObjectSet, InternalSettingsController().settings_quality).qualityObject;
+  window.unique.playerRef.current.plyr.stop();
+  window.unique.playerRef.current.plyr.source = {
+    type: 'audio',
+    title: uniqueObjectSet.track["trackName_en-us"],
+    sources: [
+      {
+        src: completedUrl,
+        type: qualityObject.mime,
+      }
+    ]
+  };
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata ({
+      title: uniqueObjectSet.track["trackName_en-us"],
+      artist: JSON.parse(uniqueObjectSet.album.artists).join(', '),
+      album: uniqueObjectSet.album["albumTitle_en-us"],
+      artwork: [
+        {
+          src: `${UserConfig.baseUrl}${returnPathStringFromUniqueIdObject(db, returnUniqueIdFromAlbumId(db, parseInt(uniqueObjectSet.album.uniqueId)))}/cover_s.jpg`,
+          sizes: '512x512',
+          type: 'image/jpeg'
+        }
+      ]
+    });
+  }
+  window.unique.playerRef.current.plyr.play();
 }
 
 export default AlbumPage;

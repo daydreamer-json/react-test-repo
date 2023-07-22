@@ -66,6 +66,7 @@ const theme = createTheme({
     ].join(','),
   }
 });
+document.body.style.background = theme.palette.background.default;
 
 function App () {
   window.unique = {}
