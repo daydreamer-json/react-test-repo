@@ -15,7 +15,7 @@ function FooterPlayer () {
   window.unique.playerRef = React.useRef(null);
   const plyrOptions = {
     enabled: true,
-    debug: true,
+    debug: false,
     controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
     settings: ['captions', 'quality', 'speed', 'loop'],
     blankVideo: 'https://cdn.plyr.io/static/blank.mp4',

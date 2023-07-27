@@ -10,7 +10,6 @@ import returnPathStringFromUniqueIdObject from "./func/returnPathStringFromUniqu
 function BodyCard (props) {
   const { db, albumObject } = props;
   let coverUrlPath = `${UserConfig.baseUrl}${returnPathStringFromUniqueIdObject(db, returnUniqueIdFromAlbumId(db, albumObject.uniqueId))}/cover_s.webp`;
-  const [coverImageLoaded, setCoverImageLoaded] = React.useState(false);
   return (
     <Card>
       <CardActionArea component={RouterLink} to={`/album/${albumObject.uniqueId}`}>

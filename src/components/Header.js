@@ -12,7 +12,7 @@ function Header () {
     <div>
       <AppBar position="fixed">
         <Toolbar>
-          <img style={{width: '2em'}} alt="HoYoverse Mark" src="/img/hoyoverse_logomark.png" />
+          {/* <img style={{width: '2em'}} alt="HoYoverse Mark" src="/img/hoyoverse_logomark.png" /> */}
           <RouterLink to="/" style={{
             display: 'flex',
             textDecoration: 'none',
@@ -21,7 +21,7 @@ function Header () {
             color: theme.palette.background.paper,
           }}>
             <Typography variant="h6" component="span">
-              HoYoverse Jukebox
+              onGaku MDB
             </Typography>
           </RouterLink>
           <MainMenu />

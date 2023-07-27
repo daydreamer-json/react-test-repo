@@ -1,5 +1,4 @@
 import * as React from "react";
-import axios from "axios";
 import { useTheme, Grid } from "@mui/material";
 import BodyCard from './BodyCard';
 

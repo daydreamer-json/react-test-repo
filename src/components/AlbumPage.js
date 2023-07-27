@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useParams, useLocation, useSearchParams } from "react-router-dom";
-import { useTheme, Typography, Accordion, AccordionSummary, AccordionDetails, Button, Divider, List, ListSubheader, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Avatar, IconButton, Paper, ListItemButton } from "@mui/material";
+import { useTheme, Typography, Accordion, AccordionSummary, AccordionDetails, Button, Chip, Divider, List, ListSubheader, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Avatar, IconButton, Paper, ListItemButton } from "@mui/material";
 import styled from "@emotion/styled";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -11,7 +11,7 @@ import InternalSettingsController from "./InternalSettingsController";
 import returnUniqueIdFromAlbumId from "./func/returnUniqueIdFromAlbumId";
 import returnPathStringFromUniqueIdObject from "./func/returnPathStringFromUniqueIdObject";
 import returnUniqueObjectFromTrackId from "./func/returnUniqueObjectFromTrackId";
-import FooterPlayer from "./FooterPlayer";
+import returnUniqueObjectFromAlbumId from "./func/returnUniqueObjectFromAlbumId";
 import returnUrlFromUniqueObject from "./func/returnUrlFromUniqueObject";
 
 function AlbumPage (props) {
@@ -168,6 +168,9 @@ function AlbumPage (props) {
           by {albumObject["albumArtist"]}
         </Typography>
       </div>
+      <div className="albumCategoryChipHolder" style={{}}>
+        <Chip label={returnUniqueObjectFromAlbumId(db, albumObject.uniqueId).category.nameDisp} variant="outlined" size="small" />
+      </div>
       <div className="albumExtLinksHolder" style={{
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1)
@@ -219,7 +222,7 @@ function AlbumPage (props) {
                 {trackObjectList[item.discNum - 1].map((item2) => (
                   <ListItem key={`track-unique-${item2.uniqueId}`} disablePadding>
                     <ListItemButton onClick={() => playAudio(db, item2.uniqueId)}>
-                      <ListItemIcon>
+                      <ListItemIcon sx={{ minWidth: '40px' }}>
                         <PlayArrowIcon />
                       </ListItemIcon>
                       <ListItemText
@@ -280,6 +283,7 @@ function playAudio (db, uniqueTrackId) {
     });
   }
   window.unique.playerRef.current.plyr.play();
+  console.log(`Audio playback triggered.\nsrc: ${completedUrl}`)
 }
 
 export default AlbumPage;
